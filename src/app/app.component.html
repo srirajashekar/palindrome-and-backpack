@@ -1,0 +1,59 @@
+<h3>
+  {{title}}
+</h3>
+
+<div>
+  Please enter the input
+  <input type="number" [(ngModel)]="inputBox" />
+  <button (click)="createInputs($event)">Go</button>
+</div>
+
+<div>
+  <ul>
+    <li *ngFor="let key of inputs | keysvalues, let i = index;">
+      Enter Input {{i}}
+      <input [(ngModel)]="inputs[key]"  placeholder="enter palindrome"/>
+    </li>
+  </ul>
+  <button *ngIf="(inputs | keysvalues).length" (click)="calculateResult($event)">Submit Inputs</button>
+</div>
+
+<div>
+  <ul>
+    <li *ngFor="let key of result | keysvalues, let i = index;">
+      {{freezeInputs[key]}} - {{result[key] ? 'palindrome' : 'not palindrome'}}
+    </li>
+  </ul>
+
+  <button *ngIf="(result | keysvalues).length" (click)="clearResults($event)">Clear Results</button>
+</div>
+
+<hr/>
+
+<h3>
+  Enter backpack details
+</h3>
+<div>
+  <span>
+    Enter Item Name
+    <input [(ngModel)]="itemName" placeholder="Enter item name"/>
+    <button (click)="addItemToBackpack()">Add</button>
+  </span>
+</div>
+
+<br/>
+
+<div>
+  <span *ngIf="backpackItems.length">
+    List all Items
+  </span>
+  <span *ngIf="!backpackItems.length">
+    Backpack is empty
+  </span>
+  <ul>
+    <li *ngFor="let item of backpackItems">
+      {{item.itemName}} 
+      <span><button (click)="removeItemFromBackpack(item.id)">Remove</button></span>
+    </li>
+  </ul>
+</div>
